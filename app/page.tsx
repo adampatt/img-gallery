@@ -5,17 +5,17 @@ import { SignedIn, SignedOut } from '@clerk/nextjs';
 async function Images() {
   const images = await getUserImages();
   return (
-    <div>
+    <div className="flex justify-center flex-wrap gap-4">
       {images.map((image) => (
         <div
           key={image.id}
-          className="flex flex-col flex-wrap gap-4"
+          className="flex h-48 w-48 flex-col"
         >
           <Image
             src={image.url}
-            alt={image.url}
-            width={400}
-            height={400}
+            alt={image.name}
+            width={192}
+            height={192}
           />
           <div>{image.name}</div>
         </div>
