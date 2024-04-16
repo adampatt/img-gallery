@@ -1,13 +1,9 @@
-import Image from 'next/image';
-import { db } from './server/db';
+import Image, { getImageProps } from 'next/image';
+import { getImages } from './server/queries';
 import { SignedIn, SignedOut } from '@clerk/nextjs';
 
 async function Images() {
-  const images = await db.query.images.findMany({
-    // Id is incremented each time a new image is added so we are displaying newest first by ordering by id in descending order
-    orderBy: (model, { desc }) => desc(model.id),
-  });
-
+  const images = await getImages();
   return (
     <div>
       {images.map((image) => (
