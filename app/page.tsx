@@ -1,5 +1,5 @@
 import Image from 'next/image';
-
+import { db } from './server/db';
 const mockUrls = [
   'https://utfs.io/f/51770c8c-51e4-4cfc-afc9-9766c907e9bf-vsko4n.03.00.png',
   'https://utfs.io/f/27579d1d-aaf5-44f5-b33e-eb2b30b3c454-vsko4n.02.36.png',
@@ -13,7 +13,8 @@ const mockImages = mockUrls.map((url, index) => ({
   alt: `Image ${index + 1}`,
 }));
 
-export default function Home() {
+export default async function Home() {
+  const cities = await db.findMany();
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="flex flex-row flex-wrap gap-4">
