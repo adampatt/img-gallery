@@ -1,9 +1,9 @@
 import Image, { getImageProps } from 'next/image';
-import { getImages } from './server/queries';
+import { getUserImages } from './server/queries';
 import { SignedIn, SignedOut } from '@clerk/nextjs';
 
 async function Images() {
-  const images = await getImages();
+  const images = await getUserImages();
   return (
     <div>
       {images.map((image) => (
