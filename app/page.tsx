@@ -13,7 +13,7 @@ export default async function Home() {
         {images.map((image) => (
           <div
             key={image.id}
-            className="w-48 gap-4"
+            className="w-48 gap-4 flex flex-col"
           >
             <Image
               src={image.url}
@@ -21,6 +21,7 @@ export default async function Home() {
               width={400}
               height={400}
             />
+            <div>{image.name}</div>
           </div>
         ))}
       </div>
