@@ -1,5 +1,4 @@
 import { type Config } from "drizzle-kit";
-import { drizzle } from 'drizzle-orm/neon-http';
 
 // import all the environment variables"
 
@@ -10,6 +9,6 @@ export default {
   dbCredentials: {
     connectionString: postgresUrl!,
   },
-  tablesFilter: ["t3gallery_*"],
+  tablesFilter: ["images_*"],
 } satisfies Config;
 

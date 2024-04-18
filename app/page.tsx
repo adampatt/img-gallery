@@ -1,6 +1,7 @@
 import Image, { getImageProps } from 'next/image';
 import { getUserImages } from './server/queries';
 import { SignedIn, SignedOut } from '@clerk/nextjs';
+import Link from 'next/link';
 
 async function Images() {
   const images = await getUserImages();
@@ -11,12 +12,17 @@ async function Images() {
           key={image.id}
           className="flex h-48 w-48 flex-col"
         >
-          <Image
-            src={image.url}
-            alt={image.name}
-            width={192}
-            height={192}
-          />
+          <Link
+            href={`/img/${image.id}`}
+            key={image.id}
+          >
+            <Image
+              src={image.url}
+              alt={image.name}
+              width={192}
+              height={192}
+            />
+          </Link>
           <div>{image.name}</div>
         </div>
       ))}
