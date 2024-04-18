@@ -31,3 +31,9 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Required css additions for dialog to become full page */
+dialog {
+  max-width: 100vw;
+  max-height: 100vh; 
+}
