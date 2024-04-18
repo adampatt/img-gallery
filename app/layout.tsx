@@ -34,8 +34,11 @@ export default function RootLayout({
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
         <body className={inter.className}>
-          <TopNav />
-          {children}
+          {/* Use a div here to wrap the children and modal, this stops third party libraries making changes to the body */}
+          <div className="h-screen grid grid-rows-[auto,1fr]">
+            <TopNav />
+            <main className="overflow-y-scroll">{children}</main>
+          </div>
           {modal}
           {/* The below div can be used a target when mounting elements */}
           <div id="modal-root" />

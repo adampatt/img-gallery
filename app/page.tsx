@@ -6,8 +6,8 @@ import Link from 'next/link';
 async function Images() {
   const images = await getUserImages();
   return (
-    <div className="flex justify-center flex-wrap gap-4">
-      {images.map((image) => (
+    <div className="flex justify-center flex-wrap gap-4 p-4">
+      {[...images, ...images, ...images, ...images, ...images, ...images].map((image) => (
         <div
           key={image.id}
           className="flex h-48 w-48 flex-col"
