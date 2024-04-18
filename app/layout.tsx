@@ -2,12 +2,17 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
-const inter = Inter({ subsets: ['latin'] });
 import { TopNav } from './_components/topnav';
 import '@uploadthing/react/styles.css';
 import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin';
 import { extractRouterConfig } from 'uploadthing/server';
 import { ourFileRouter } from './api/uploadthing/core';
+import { Toaster } from 'sonner';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
 
 export const metadata: Metadata = {
   title: 'Image gallery',
@@ -33,7 +38,7 @@ export default function RootLayout({
            */
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
-        <body className={inter.className}>
+        <body className={`font-sans ${inter.variable} dark`}>
           {/* Use a div here to wrap the children and modal, this stops third party libraries making changes to the body */}
           <div className="h-screen grid grid-rows-[auto,1fr]">
             <TopNav />
@@ -42,6 +47,7 @@ export default function RootLayout({
           {modal}
           {/* The below div can be used a target when mounting elements */}
           <div id="modal-root" />
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>
