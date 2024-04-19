@@ -5,6 +5,7 @@ import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import { use, useEffect } from 'react';
 import { toast } from 'sonner';
+import { usePostHog } from 'posthog-js/react';
 
 // inferred input off useUploadThing
 type Input = Parameters<typeof useUploadThing>;
@@ -96,10 +97,12 @@ function MakeToast() {
 }
 
 export function SimpleUploadButton() {
+  const poghog = usePostHog();
   const router = useRouter();
 
   const { inputProps } = useUploadThingInputProps('imageUploader', {
     onUploadBegin() {
+      poghog.capture('upload_begin');
       toast(
         <div className="flex items-center gap-2 bg-black/90 text-white">
           <LoadingSpinnerSVG /> <span className="text-lg">Uploading...</span>
